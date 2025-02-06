@@ -2,4 +2,3 @@ generated
 build
 .vscode
 pico_sdk_import.cmake
-CMakelists.txt
