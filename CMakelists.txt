@@ -33,5 +33,5 @@ pico_generate_pio_header(PixTerm ${CMAKE_CURRENT_LIST_DIR}/ws2812.pio OUTPUT_DIR
 target_sources(PixTerm PRIVATE PixTerm.c inc/ws2812b.c inc/push_button.c inc/rgb.c inc/ssd1306.c)
 target_link_libraries(PixTerm PRIVATE pico_stdlib hardware_pio
                     hardware_clocks hardware_pwm hardware_timer
-                    hardware_i2c)
+                    hardware_i2c hardware_uart)
 pico_add_extra_outputs(PixTerm)
