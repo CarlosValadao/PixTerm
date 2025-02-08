@@ -2,6 +2,7 @@
 #define LITE5_H
 
 #include <stdint.h>
+#include "ws2812b.h"
 
 typedef struct {
     uint8_t pattern;
@@ -10,6 +11,6 @@ typedef struct {
 } Command;
 
 Command parse_command(const char *input);
-void execute_command(const Command *cmd);
+void execute_command(const ws2812b_t *ws, const Command *cmd);
 
 #endif //LITE5_H
