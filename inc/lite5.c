@@ -6,10 +6,6 @@
 #include "ws2812b_definitions.h"
 #include "pico/stdlib.h"
 
-#define EMPTY_CMD ((Command) {0, 0, 0})
-
-typedef void (*motion_slide_func_t)(const ws2812b_t *, const uint8_t *, uint8_t, uint8_t);
-
 Command last_executed_cmd = EMPTY_CMD;
 
 static uint8_t hash_color(uint8_t color)
@@ -42,4 +38,9 @@ void execute_command(const ws2812b_t *ws, const Command *cmd)
     if(last_executed_cmd.intensity != 0) ws2812b_motion_transition(ws, &last_executed_cmd, cmd);
     else ws2812b_draw(ws, NUMERIC_GLYPHS[cmd->pattern], cmd->color, cmd->intensity);
     last_executed_cmd = *cmd;
+}
+
+bool lite5_is_empty_cmd(const Command *cmd)
+{
+    return (bool) (cmd->pattern != 0 && cmd->color != 0 && cmd->intensity != 0);
 }
