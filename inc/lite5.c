@@ -4,24 +4,31 @@
 #include <stdio.h>
 #include "ws2812b_motion.h"
 #include "ws2812b_definitions.h"
+#include "pico/stdlib.h"
+
+#define EMPTY_CMD ((Command) {0, 0, 0})
+
+typedef void (*motion_slide_func_t)(const ws2812b_t *, const uint8_t *, uint8_t, uint8_t);
+
+Command last_executed_cmd = EMPTY_CMD;
 
 static uint8_t hash_color(uint8_t color)
 {
     switch (color) {
-        case 114: return 0;  // Red
-        case 103: return 1;  // Green
-        case 98:  return 2;  // Blue
-        case 121: return 3;  // Yellow
-        case 112: return 4;  // Purple
-        case 119: return 6;  // White
-        case 109: return 5;  // Marine
+        case 'r': return 0;  // Red
+        case 'g': return 1;  // Green
+        case 'b':  return 2;  // Blue
+        case 'y': return 3;  // Yellow
+        case 'p': return 4;  // Purple
+        case 'w': return 5;  // White
+        case 'm': return 6;  // Marines
     }
 }
 
 Command parse_command(const char *input)
 {
     // invalid command
-    Command cmd = {.pattern = 0, .color = 0, .intensity = 0};
+    Command cmd = EMPTY_CMD;
     if(strlen(input) > 5) return cmd;
     cmd.pattern = (input[0] - 48);
     cmd.color = hash_color(input[1]);
@@ -29,7 +36,10 @@ Command parse_command(const char *input)
     return cmd;
 }
 
+
 void execute_command(const ws2812b_t *ws, const Command *cmd)
 {
-    ws2812b_motion_slide_left(ws, NUMERIC_GLYPHS[cmd->pattern], cmd->color, cmd->intensity);
+    if(last_executed_cmd.intensity != 0) ws2812b_motion_transition(ws, &last_executed_cmd, cmd);
+    else ws2812b_draw(ws, NUMERIC_GLYPHS[cmd->pattern], cmd->color, cmd->intensity);
+    last_executed_cmd = *cmd;
 }
