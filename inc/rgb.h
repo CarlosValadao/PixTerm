@@ -112,4 +112,6 @@ void rgb_turn_off_white(const rgb_t *pins);
 
 void turn_off_led_by_gpio(uint8_t pin);
 
+void rgb_turn_on_by_gpio(uint8_t pin, uint8_t intensity);
+
 #endif // RGB_H

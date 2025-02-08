@@ -17,7 +17,7 @@ static uint16_t calculate_led_intensity_value(uint8_t intensity)
     intensity = (intensity == 0) ? 1 : intensity;
     
     // Define a intensidade máxima do LED (valor 0xFF00, um valor de 16 bits)
-    uint16_t MAX_LED_INTENSITY = 0xFF00;
+    uint16_t MAX_LED_INTENSITY = 0xFFFF;
     
     // Retorna o valor de intensidade proporcional
     return (uint16_t) ((MAX_LED_INTENSITY * intensity) / 100u);
@@ -170,4 +170,10 @@ void rgb_turn_off_white(const rgb_t *pins) {
 void turn_off_led_by_gpio(uint8_t pin)
 {
     pwm_set_gpio_level(pin, 0);
+}
+
+void rgb_turn_on_by_gpio(uint8_t pin, uint8_t intensity)
+{
+    uint16_t led_intensity = calculate_led_intensity_value(intensity);
+    pwm_set_gpio_level(pin, led_intensity);
 }
