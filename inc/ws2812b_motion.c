@@ -102,3 +102,14 @@ void ws2812b_motion_slide_right(const ws2812b_t *ws, const uint8_t *glyph, uint8
 {
     ws2812b_motion_slide(ws, glyph, color, intensity, &ws2812b_motion_shift_right);
 }
+
+void ws2812b_motion_transition(const ws2812b_t *ws, const Command *last_cmd, const Command *cmd)
+{
+    if (last_cmd->pattern < cmd->pattern) {
+        ws2812b_motion_slide_right(ws, NUMERIC_GLYPHS[last_cmd->pattern], last_cmd->color, last_cmd->intensity);
+    } else if (last_cmd->pattern > cmd->pattern) {
+        ws2812b_motion_slide_left(ws, NUMERIC_GLYPHS[last_cmd->pattern], last_cmd->color, last_cmd->intensity);
+    }
+    sleep_ms(50);
+    ws2812b_draw(ws, NUMERIC_GLYPHS[cmd->pattern], cmd->color, cmd->intensity);
+}

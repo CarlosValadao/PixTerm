@@ -1,6 +1,7 @@
 #ifndef WS2812B_MOTION_H
 #define WS2812B_MOTION_H
 
+#include "lite5.h"
 #include "ws2812b.h"
 #include <stdint.h>
 
@@ -80,5 +81,7 @@ void ws2812b_motion_slide_right(const ws2812b_t *ws, const uint8_t *glyph, uint8
  * @param color A cor a ser utilizada para o movimento.
  * @param intensity A intensidade da cor nos LEDs.
  */
+
+ void ws2812b_motion_transition(const ws2812b_t *ws, const Command *last_cmd, const Command *cmd);
 
 #endif
