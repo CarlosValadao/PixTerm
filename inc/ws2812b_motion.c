@@ -6,6 +6,29 @@
 #include <string.h>
 #include <stdlib.h>
 
+typedef void (*shift_function_t)(uint8_t *, uint8_t *); // Define um ponteiro para função de shift
+
+static void ws2812b_motion_slide(const ws2812b_t *ws, const uint8_t *glyph, uint8_t color, uint8_t intensity, shift_function_t shift_function)
+{
+    uint8_t i;
+    size_t GLYPH_SIZE = (size_t) (25 * sizeof(uint8_t));
+    uint8_t *shifted_glyph = malloc(GLYPH_SIZE);
+    uint8_t *aux_glyph = malloc(GLYPH_SIZE);
+
+    memcpy(aux_glyph, glyph, GLYPH_SIZE);
+    ws2812b_draw(ws, glyph, color, intensity);
+    sleep_ms(250);
+    for(i = 0; i < 4; i++)
+    {
+        shift_function(aux_glyph, shifted_glyph); // Chama a função de deslocamento (esquerda/direita)
+        ws2812b_draw(ws, shifted_glyph, color, intensity);
+        memcpy(aux_glyph, shifted_glyph, GLYPH_SIZE);
+        sleep_ms(250);
+    }
+    free(shifted_glyph);
+    free(aux_glyph);
+}
+
 
 static void fliplr(uint8_t *glyph) {
     uint8_t temp;
@@ -72,52 +95,10 @@ void ws2812b_motion_shift_right(uint8_t *glyph, uint8_t *shifted_glyph)
 
 void ws2812b_motion_slide_left(const ws2812b_t *ws, const uint8_t *glyph, uint8_t color, uint8_t intensity)
 {
-    uint8_t i;
-    uint8_t *shifted_glyph = malloc(25 * sizeof(uint8_t));
-    uint8_t *aux_glyph = malloc(25 * sizeof(uint8_t));
-    memcpy(aux_glyph, glyph, 25 * sizeof(uint8_t));
-    ws2812b_draw(ws, glyph, color, intensity);
-    sleep_ms(500);
-    //ws2812b_turn_off_all(ws);
-    sleep_ms(50);
-    for(i = 0; i < 4; i++)
-    {
-        ws2812b_motion_shift_left(aux_glyph, shifted_glyph);
-        ws2812b_draw(ws, shifted_glyph, color, intensity);
-        memcpy(aux_glyph, shifted_glyph, 25 * sizeof(uint8_t));
-        sleep_ms(500);
-        //ws2812b_turn_off_all(ws);
-        sleep_ms(50);
-    }
-    sleep_ms(20);
-    ws2812b_draw(ws, glyph, color, intensity);
-    sleep_ms(200);
-    free(shifted_glyph);
-    free(aux_glyph);
+    ws2812b_motion_slide(ws,  glyph, color, intensity, &ws2812b_motion_shift_left);
 }
 
 void ws2812b_motion_slide_right(const ws2812b_t *ws, const uint8_t *glyph, uint8_t color, uint8_t intensity)
 {
-    uint8_t i;
-    uint8_t *shifted_glyph = malloc(25 * sizeof(uint8_t));
-    uint8_t *aux_glyph = malloc(25 * sizeof(uint8_t));
-    memcpy(aux_glyph, glyph, 25 * sizeof(uint8_t));
-    ws2812b_draw(ws, glyph, color, intensity);
-    sleep_ms(500);
-    //ws2812b_turn_off_all(ws);
-    sleep_ms(50);
-    for(i = 0; i < 4; i++)
-    {
-        ws2812b_motion_shift_right(aux_glyph, shifted_glyph);
-        ws2812b_draw(ws, shifted_glyph, color, intensity);
-        memcpy(aux_glyph, shifted_glyph, 25 * sizeof(uint8_t));
-        sleep_ms(500);
-        //ws2812b_turn_off_all(ws);
-        sleep_ms(50);
-    }
-    sleep_ms(20);
-    ws2812b_draw(ws, glyph, color, intensity);
-    sleep_ms(200);
-    free(shifted_glyph);
-    free(aux_glyph);
+    ws2812b_motion_slide(ws, glyph, color, intensity, &ws2812b_motion_shift_right);
 }
