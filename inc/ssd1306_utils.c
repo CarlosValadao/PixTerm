@@ -25,5 +25,6 @@ void ssd1306_print_char(ssd1306_t *ssd, char c, uint8_t x, uint8_t y)
 
 void ssd1306_print_str(ssd1306_t *ssd, const char *str, uint8_t x, uint8_t y)
 {
-    return; //TO DO
+    ssd1306_draw_string(ssd, str, x, y);
+    ssd1306_send_data(ssd);
 }
