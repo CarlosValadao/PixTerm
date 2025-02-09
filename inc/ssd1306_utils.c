@@ -49,7 +49,8 @@ void ssd1306_auto_write_char(ssd1306_t *ssd, char c)
     return; //TO DO
 }
 
-void ssd1306_set_auto_write_cursor(uint8_t x, uint8_t y)
+void ssd1306_set_auto_write_cursor(uint8_t *x, uint8_t *y)
 {
-    return; //TO DO
+    cursor_x = *x;
+    cursor_y = *y;
 }
