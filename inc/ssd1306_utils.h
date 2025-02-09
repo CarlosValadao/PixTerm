@@ -6,13 +6,13 @@
 #define UINT8_T_CONSTANT(value) ((uint8_t) (value))
 
 #define OLED_LINE1 UINT8_T_CONSTANT(0)
-#define OLED_LINE2 UINT8_T_CONSTANT(1)
-#define OLED_LINE3 UINT8_T_CONSTANT(2)
-#define OLED_LINE4 UINT8_T_CONSTANT(3)
-#define OLED_LINE5 UINT8_T_CONSTANT(4)
-#define OLED_LINE6 UINT8_T_CONSTANT(5)
-#define OLED_LINE7 UINT8_T_CONSTANT(6)
-#define OLED_LINE8 UINT8_T_CONSTANT(7)
+#define OLED_LINE2 UINT8_T_CONSTANT(8)
+#define OLED_LINE3 UINT8_T_CONSTANT(16)
+#define OLED_LINE4 UINT8_T_CONSTANT(24)
+#define OLED_LINE5 UINT8_T_CONSTANT(32)
+#define OLED_LINE6 UINT8_T_CONSTANT(40)
+#define OLED_LINE7 UINT8_T_CONSTANT(48)
+#define OLED_LINE8 UINT8_T_CONSTANT(56)
 
 #define OLED_COL1  UINT8_T_CONSTANT(0)
 #define OLED_COL2  UINT8_T_CONSTANT(8)
@@ -36,5 +36,7 @@ void ssd1306_clear_line(ssd1306_t *ssd, uint8_t line);
 void ssd1306_print_char(ssd1306_t *ssd, char c, uint8_t x, uint8_t y);
 void ssd1306_print_str(ssd1306_t *ssd, const char *str, uint8_t x, uint8_t y);
 void ssd1306_init_all(ssd1306_t *ssd, i2c_inst_t *i2c, uint baudrate, uint8_t sda, uint8_t scl);
+void ssd1306_auto_write_char(ssd1306_t *ssd, char c);
+void ssd1306_set_auto_write_cursor(uint8_t x, uint8_t y);
 
 #endif //SSD1306_UTILS
