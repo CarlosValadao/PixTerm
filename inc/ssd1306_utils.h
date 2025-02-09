@@ -31,5 +31,7 @@
 
 void ssd1306_clear_screen(const ssd1306_t *ssd);
 void ssd1306_clear_line(const ssd1306_t *ssd);
+void ssd1306_print_char(const ssd1306_t *ssd, char c, uint8_t x, uint8_t y);
+void ssd1306_print_str(const ssd1306_t *ssd, const char *str, uint8_t x, uint8_t y);
 
 #endif //SSD1306_UTILS
