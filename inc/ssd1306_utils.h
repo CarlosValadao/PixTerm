@@ -3,35 +3,37 @@
 
 #include "ssd1306.h"
 
-#define OLED_LINE1 0
-#define OLED_LINE2 1
-#define OLED_LINE2 2
-#define OLED_LINE2 3
-#define OLED_LINE2 4
-#define OLED_LINE2 5
-#define OLED_LINE2 6
-#define OLED_LINE2 7
+#define UINT8_T_CONSTANT(value) ((uint8_t) (value))
 
-#define OLED_COL1  0
-#define OLED_COL2  8
-#define OLED_COL3  16
-#define OLED_COL4  24
-#define OLED_COL5  32
-#define OLED_COL6  40
-#define OLED_COL7  48
-#define OLED_COL8  56
-#define OLED_COL9  64
-#define OLED_COL10 72
-#define OLED_COL11 80
-#define OLED_COL12 88
-#define OLED_COL13 96
-#define OLED_COL14 104
-#define OLED_COL15 112
-#define OLED_COL16 120
+#define OLED_LINE1 UINT8_T_CONSTANT(0)
+#define OLED_LINE2 UINT8_T_CONSTANT(1)
+#define OLED_LINE3 UINT8_T_CONSTANT(2)
+#define OLED_LINE4 UINT8_T_CONSTANT(3)
+#define OLED_LINE5 UINT8_T_CONSTANT(4)
+#define OLED_LINE6 UINT8_T_CONSTANT(5)
+#define OLED_LINE7 UINT8_T_CONSTANT(6)
+#define OLED_LINE8 UINT8_T_CONSTANT(7)
 
-void ssd1306_clear_screen(const ssd1306_t *ssd);
-void ssd1306_clear_line(const ssd1306_t *ssd);
-void ssd1306_print_char(const ssd1306_t *ssd, char c, uint8_t x, uint8_t y);
-void ssd1306_print_str(const ssd1306_t *ssd, const char *str, uint8_t x, uint8_t y);
+#define OLED_COL1  UINT8_T_CONSTANT(0)
+#define OLED_COL2  UINT8_T_CONSTANT(8)
+#define OLED_COL3  UINT8_T_CONSTANT(16)
+#define OLED_COL4  UINT8_T_CONSTANT(24)
+#define OLED_COL5  UINT8_T_CONSTANT(32)
+#define OLED_COL6  UINT8_T_CONSTANT(40)
+#define OLED_COL7  UINT8_T_CONSTANT(48)
+#define OLED_COL8  UINT8_T_CONSTANT(56)
+#define OLED_COL9  UINT8_T_CONSTANT(64)
+#define OLED_COL10 UINT8_T_CONSTANT(72)
+#define OLED_COL11 UINT8_T_CONSTANT(80)
+#define OLED_COL12 UINT8_T_CONSTANT(88)
+#define OLED_COL13 UINT8_T_CONSTANT(96)
+#define OLED_COL14 UINT8_T_CONSTANT(104)
+#define OLED_COL15 UINT8_T_CONSTANT(112)
+#define OLED_COL16 UINT8_T_CONSTANT(120)
+
+void ssd1306_clear_screen(ssd1306_t *ssd);
+void ssd1306_clear_line(ssd1306_t *ssd, uint8_t line);
+void ssd1306_print_char(ssd1306_t *ssd, char c, uint8_t x, uint8_t y);
+void ssd1306_print_str(ssd1306_t *ssd, const char *str, uint8_t x, uint8_t y);
 
 #endif //SSD1306_UTILS
