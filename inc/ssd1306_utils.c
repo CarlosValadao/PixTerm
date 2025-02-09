@@ -28,3 +28,8 @@ void ssd1306_print_str(ssd1306_t *ssd, const char *str, uint8_t x, uint8_t y)
     ssd1306_draw_string(ssd, str, x, y);
     ssd1306_send_data(ssd);
 }
+
+void i2c_init_all(ssd1306_t *ssd, i2c_inst_t *i2c, uint baudrate, uint8_t sda, uint8_t scl)
+{
+    return; //TO DO
+}
