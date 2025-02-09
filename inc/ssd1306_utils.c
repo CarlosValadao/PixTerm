@@ -32,9 +32,16 @@ void ssd1306_print_str(ssd1306_t *ssd, const char *str, uint8_t x, uint8_t y)
     ssd1306_send_data(ssd);
 }
 
-void i2c_init_all(ssd1306_t *ssd, i2c_inst_t *i2c, uint baudrate, uint8_t sda, uint8_t scl)
+void ssd1306_init_all(ssd1306_t *ssd, i2c_inst_t *i2c, uint baudrate, uint8_t sda, uint8_t scl, uint8_t address)
 {
-    return; //TO DO
+    i2c_init(i2c, baudrate);
+    gpio_set_function(sda, GPIO_FUNC_I2C);
+    gpio_set_function(scl, GPIO_FUNC_I2C);
+    gpio_pull_up(sda);
+    gpio_pull_up(scl);
+    ssd1306_init(ssd, WIDTH, HEIGHT, false, address, i2c);
+    ssd1306_config(ssd);
+    ssd1306_send_data(ssd);
 }
 
 void ssd1306_auto_write_char(ssd1306_t *ssd, char c)

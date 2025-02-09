@@ -35,7 +35,7 @@ void ssd1306_clear_screen(ssd1306_t *ssd);
 void ssd1306_clear_line(ssd1306_t *ssd, uint8_t line);
 void ssd1306_print_char(ssd1306_t *ssd, char c, uint8_t x, uint8_t y);
 void ssd1306_print_str(ssd1306_t *ssd, const char *str, uint8_t x, uint8_t y);
-void ssd1306_init_all(ssd1306_t *ssd, i2c_inst_t *i2c, uint baudrate, uint8_t sda, uint8_t scl);
+void ssd1306_init_all(ssd1306_t *ssd, i2c_inst_t *i2c, uint baudrate, uint8_t sda, uint8_t scl, uint8_t address);
 void ssd1306_auto_write_char(ssd1306_t *ssd, char c);
 void ssd1306_set_auto_write_cursor(uint8_t x, uint8_t y);
 
