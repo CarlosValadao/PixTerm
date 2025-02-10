@@ -1,14 +1,14 @@
 /**
  * @file ssd1306_utils.h
  * @brief Este arquivo contém definições e declarações de funções auxiliares para
- *        a manipulação do display OLED SSD1306 via protocolo I2C.
+ *        a manipulação do display OLED SSD1306 (128x64) via protocolo I2C.
  * 
  * @note As funções definidas aqui permitem limpar a tela, imprimir caracteres e
  *       strings, bem como configurar a posição do cursor para escrita automática.
  *       O display é organizado em linhas e colunas, com deslocamentos de 8 pixels.
  * 
- * @author Seu Nome
- * @date 10/02/2025
+ * @author Carlos Valadão
+ * @date 09/02/2025
  */
 
  #ifndef SSD1306_UTILS_H
