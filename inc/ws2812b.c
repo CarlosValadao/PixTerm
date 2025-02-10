@@ -3,18 +3,37 @@
 #include <stdlib.h>
 #include "../generated/ws2812.pio.h"
 
-// Função que inverte horizontalmente a matriz 5x5 de LEDs. Esta operação é necessária para ajustar a orientação do padrão.
+/**
+ * @brief Inverte horizontalmente a matriz 5x5 de LEDs.
+ * 
+ * @param matrix Ponteiro para a matriz de LEDs representada como um array de 25 elementos.
+ * 
+ * @note Esta operação é necessária para ajustar a orientação do padrão de LEDs
+ *       quando exibido na matriz. A inversão ocorre em pares de elementos em posições
+ *       simétricas em relação ao eixo central vertical.
+ */
 static void fliplr(uint8_t *matrix) {
     uint8_t temp;
+
+    // Troca os elementos da primeira linha
     temp = matrix[5];
-    matrix[5] = matrix[9]; matrix[9] = temp;
+    matrix[5] = matrix[9]; 
+    matrix[9] = temp;
+
     temp = matrix[6];
-    matrix[6] = matrix[8]; matrix[8] = temp;
+    matrix[6] = matrix[8]; 
+    matrix[8] = temp;
+
+    // Troca os elementos da terceira linha
     temp = matrix[15];
-    matrix[15] = matrix[19]; matrix[19] = temp;
+    matrix[15] = matrix[19]; 
+    matrix[19] = temp;
+
     temp = matrix[16];
-    matrix[16] = matrix[18]; matrix[18] = temp;
+    matrix[16] = matrix[18]; 
+    matrix[18] = temp;
 }
+
 
 /**
  * @brief Compoe o valor do LED com base na cor e intensidade fornecida.
