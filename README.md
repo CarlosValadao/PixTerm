@@ -84,11 +84,11 @@ Saída esperada:
 
 - No **display OLED**:
   ```
-  LED Verde: ON
+  Green LED on
   ```
 - No **Serial Monitor**:
   ```sh
-  LED Verde ligado.
+  Green LED on
   ```
 
 ### 🔘 Alternar o LED Azul (Botão B - GPIO 6)
@@ -99,27 +99,11 @@ Saída esperada:
 - **LED Azul** 🔵 será ligado/desligado.
 - No **display OLED**:
   ```
-  LED Azul: OFF
+  Blue LED on
   ```
 - No **Serial Monitor**:
   ```sh
-  LED Azul desligado.
-  ```
-
-### 🔄 Pressionar Ambos os Botões
-
-Pressione **Botão A** e **Botão B** ao mesmo tempo.
-
-Saída esperada:
-- No **display OLED**:
-  ```
-  LED Verde: ON
-  LED Azul: ON
-  ```
-- No **Serial Monitor**:
-  ```sh
-  LED Verde ligado.
-  LED Azul ligado.
+  Blue LED on
   ```
 
 ## 🚀 Instalação e Execução
