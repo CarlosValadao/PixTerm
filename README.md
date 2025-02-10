@@ -123,7 +123,7 @@ cd PixTerm
 
 ### ▶️ Passo 3: Compilar e Executar o Projeto
 
-1. Compile o código utilizando o **pico-sdk**.
+1. Compile o código utilizando a extensão da **Raspberry pi pico** no vs code.
 2. Faça o upload do firmware para a placa.
 3. Abra o **Serial Monitor** no VS Code para interação com o PixTerm.
 
