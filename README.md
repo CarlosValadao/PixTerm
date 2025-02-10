@@ -1,4 +1,4 @@
-# PixTerm (Pixel Terminal) 🚀 [Vídeo de apresentação](https://youtu.be/SO7VelBtSJQ)
+# PixTerm |Pixel Terminal| 🚀 [Vídeo de apresentação](https://youtu.be/SO7VelBtSJQ)
 
 ## 📌 Descrição do Projeto
 
