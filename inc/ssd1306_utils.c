@@ -1,7 +1,9 @@
 #include "ssd1306_utils.h"
 
-static uint8_t cursor_x = 0;
-static uint8_t cursor_y = 0;
+static uint8_t cursor_col = 0;
+static uint8_t cursor_row = 0;
+static uint8_t aux_col = 0;
+static uint8_t aux_row = 0;
 
 void ssd1306_clear_display(ssd1306_t *ssd)
 {
@@ -46,11 +48,22 @@ void ssd1306_init_all(ssd1306_t *ssd, i2c_inst_t *i2c, uint baudrate, uint8_t sd
 
 void ssd1306_auto_write_char(ssd1306_t *ssd, char c)
 {
-    return; //TO DO
+    if (aux_col == WIDTH) {
+        aux_col = OLED_COL1;
+        aux_row += 8;
+        if(aux_row == HEIGHT) {
+            aux_col = cursor_col;
+            aux_row = cursor_row;
+        }
+    }
+    ssd1306_print_char(ssd, c, aux_col, aux_row);
+    aux_col += 8;
 }
 
-void ssd1306_set_auto_write_cursor(uint8_t *x, uint8_t *y)
+void ssd1306_set_auto_write_cursor(uint8_t col, uint8_t line)
 {
-    cursor_x = *x;
-    cursor_y = *y;
+    cursor_col = col;
+    cursor_row = line;
+    aux_col = cursor_col;
+    aux_row = cursor_row;
 }
